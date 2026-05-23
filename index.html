@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Search</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+    <style>
+        @font-face {
+            font-family: "Catull";
+            src: url("Fonts/Catull.ttf");
+        }
+
+        @font-face {
+            font-family: "Tahoma";
+            src: url("Fonts/Tahoma.woff");
+        }
+
+        @font-face {
+            font-family: "Arial";
+            src: url("Fonts/Arial.woff");
+        }
+
+        .header {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            margin: 0 0 0 0;
+            padding: 0 0 20px 0;
+        }
+
+        .mainPage {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            margin: 100px 0 0 0;
+            padding: 0 0 0 0;
+        }
+
+        /* Top Navigation Links */
+        .top-nav {
+            font-size: 13px;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+            .top-nav a {
+                color: #0000cc;
+                text-decoration: underline;
+                margin-left: 10px;
+            }
+
+        /* Google Logo Styling */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            font-size: 90px;
+            font-family: "Catull", "Times New Roman", Times, serif;
+            letter-spacing: -1px;
+            text-shadow: 3px 3px 3px rgba(0,0,0,0.25);
+        }
+
+        .g-blue {
+            color: #1726b3;
+        }
+
+        .g-red {
+            color: #d32121;
+        }
+
+        .g-yellow {
+            color: #de9b00;
+        }
+
+        .g-green {
+            color: #008a00;
+        }
+
+        /* Outer container table */
+        .main-table {
+            padding: 5px;
+            width: 100%;
+            max-width: 1px;
+            margin: 0 auto;
+        }
+
+        .toolbar {
+            width: 100%;
+            max-width: 700px;
+            margin: 40px auto 0 auto;
+            font-size: 13px;
+            text-align: center;
+        }
+
+            .toolbar a {
+                color: #0000cc;
+                text-decoration: underline;
+            }
+
+            .toolbar sup {
+                color: red;
+            }
+
+        .search-cell {
+            text-align: center;
+            font-size: 14px;
+            position: relative;
+        }
+
+        /* Plain text input */
+        .search-input {
+            width: 490px;
+            font-size: 15px;
+            padding: 4px;
+            margin: 4px 0px 4px 0;
+            border: 1px solid #404040;
+            border-top: 1px solid #808080;
+            border-left: 1px solid #808080;
+            border-right: 1px solid #dcdcdc;
+            border-bottom: 1px solid #dcdcdc;
+            background: white;
+            box-shadow: inset 1px 1px 0 #404040, inset -1px -1px 0 #ffffff;
+        }
+
+            .search-input:focus {
+                outline: none;
+                border: -1px solid #0000cc;
+            }
+
+        /* Suggestion dropdown */
+        .suggestions {
+            display: none;
+            position: absolute;
+            box-shadow: 2px 2px 0px #808080;
+            width: 500px;
+            margin: 0 auto;
+            border: 1px solid #7f7f7f;
+            border-top: none;
+            background: #ffffff;
+            text-align: left;
+            box-sizing: border-box;
+            font-family: Tahoma, sans-serif;
+            font-size: 16px;
+        }
+
+        .suggestion-item {
+            padding: 2px 4px;
+            line-height: 18px;
+        }
+
+            .suggestion-item.active,
+            .suggestion-item:hover {
+                background-color: #ccccff;
+            }
+
+        /* Beveled buttons */
+        .btn {
+            -webkit-appearance: none;
+            appearance: none;
+            color: #000000;
+            font-size: 13.5px;
+            font-family: Tahoma, sans-serif;
+            padding: 3px 7px;
+            margin: 4px;
+            background-color: #f0f0f0;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            cursor: pointer;
+        }
+
+            .btn:hover {
+                background-color: #dcdcdc;
+            }
+
+            .btn:active {
+                border-color: #808080 #ffffff #ffffff #808080;
+            }
+
+        /* Footer layout */
+        .footer-table {
+            width: 100%;
+            max-width: 700px;
+            margin: 40px auto 0 auto;
+            font-size: 12px;
+            text-align: center;
+        }
+
+            .footer-table a {
+                color: #0000cc;
+                text-decoration: underline;
+            }
+
+        @media (max-width: 600px) {
+
+            .mainPage {
+                margin-top: 80px;
+            }
+
+            .logo {
+                font-size: 80px;
+            }
+
+            .toolbar {
+                font-size: 12.5px;
+            }
+
+            .search-input {
+                width: 90vw;
+                max-width: 390px;
+                box-sizing: border-box;
+            }
+
+            .suggestions {
+                width: 90vw;
+                max-width: 390px;
+            }
+
+            .main-table {
+                width: 100%;
+                padding: 0;
+            }
+
+            .top-nav {
+                text-align: right;
+                margin-bottom: 30px;
+            }
+
+            .btn {
+                margin-top: 8px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <!-- Top Navigation -->
+        <div class="top-nav">
+            <a href="https://support.google.com/">Help</a>
+            <a href="https://about.google/?fg=1&utm_source=google-US&utm_medium=referral&utm_campaign=hp-header">About Google</a>
+            <a href="https://www.naitrio.com">Home</a>
+        </div>
+    </div>
+
+    <div class="mainPage">
+
+
+
+        <!-- Google Logo -->
+        <div class="logo-container">
+            <span class="logo">
+                <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+            </span>
+        </div>
+
+        <!-- Hyperlink Toolbar -->
+        <div class="toolbar">
+
+            <a href="https://www.google.com/">Web</a>
+            <span>&nbsp;&nbsp;</span>
+            <a href="https://images.google.com/">Images</a>
+            <span>&nbsp;&nbsp;</span>
+            <a href="https://www.YouTube.com">Video</a>
+            <span>&nbsp;&nbsp;</span>
+            <a href="https://www.gmail.com">Gmail</a>
+            <span>&nbsp;&nbsp;</span>
+            <a href="https://www.google.com/shopping?udm=28">Froogle</a>
+            <span>&nbsp;&nbsp;</span>
+            <a href="https://maps.google.com">Maps</a>
+            <span>&nbsp;&nbsp;</span>
+            <a href="https://gemini.google.com">Gemini</a><sup>New!</sup>
+
+
+        </div>
+
+        <!-- Core Search Interface Form -->
+        <form action="https://www.google.com/search" method="GET" autocomplete="off">
+            <table class="main-table">
+                <tr>
+                    <td class="search-cell">
+
+                        <input type="text"
+                               id="q"
+                               name="q"
+                               class="search-input"
+                               autofocus
+                               required
+                               autocomplete="off">
+
+                        <!-- Suggestions -->
+                        <div id="suggestions" class="suggestions"></div>
+
+                        <br>
+
+                        <input type="submit" value="Google Search" class="btn">
+
+                        <!-- I'm Feeling Lucky -->
+                        <input type="submit" name="btnI" value="I'm Feeling Lucky" class="btn">
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <!-- Footer Links -->
+        <table class="footer-table">
+            <tr>
+                <td>
+                    <a href="https://business.google.com/us/google-ads/?subid=ww-ww-et-g-awa-a-g_hpafoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpafooter&fg=1">Advertising Programs</a>
+                    <span> - </span>
+                    <a href="https://business.google.com/us/business-profile/?subid=ww-ww-et-g-awa-a-g_hpbfoot1_1!o2&utm_source=google.com&utm_medium=referral&utm_campaign=google_hpbfooter&fg=1">Business Solutions</a>
+                    <span> - </span>
+                    <a href="https://www.google.com/search/howsearchworks/?fg=1">About Search</a>
+                </td>
+            </tr>
+
+            <tr>
+                <td style="padding-top: 15px; color: #555555;">
+                    Copyright ©2026 Google Inc. - Searching 401,307,998,701 web pages
+                </td>
+            </tr>
+        </table>
+
+        <script>
+            const input = document.getElementById("q");
+            const suggestionsBox = document.getElementById("suggestions");
+
+            let selectedIndex = -1;
+            let currentSuggestions = [];
+
+            function fetchSuggestions(query) {
+
+                if (!query.trim()) {
+                    suggestionsBox.style.display = "none";
+                    return;
+                }
+
+                // Remove old script tag
+                const oldScript = document.getElementById("jsonpScript");
+
+                if (oldScript) {
+                    oldScript.remove();
+                }
+
+                // Create JSONP request
+                const script = document.createElement("script");
+
+                script.id = "jsonpScript";
+
+                script.src =
+                    "https://suggestqueries.google.com/complete/search" +
+                    "?client=firefox" +
+                    "&q=" + encodeURIComponent(query) +
+                    "&callback=handleSuggestions";
+
+                document.body.appendChild(script);
+            }
+
+            function handleSuggestions(data) {
+
+                currentSuggestions = data[1];
+
+                renderSuggestions(currentSuggestions);
+            }
+
+            function renderSuggestions(suggestions) {
+
+                suggestionsBox.innerHTML = "";
+
+                if (!suggestions.length) {
+                    suggestionsBox.style.display = "none";
+                    return;
+                }
+
+                suggestions.forEach((text, index) => {
+
+                    const item = document.createElement("div");
+
+                    item.className = "suggestion-item";
+
+                    item.textContent = text;
+
+                    item.addEventListener("mousedown", () => {
+
+                        input.value = text;
+
+                        suggestionsBox.style.display = "none";
+                    });
+
+                    suggestionsBox.appendChild(item);
+                });
+
+                selectedIndex = -1;
+
+                suggestionsBox.style.display = "block";
+            }
+
+            input.addEventListener("input", () => {
+
+                fetchSuggestions(input.value);
+            });
+
+            input.addEventListener("keydown", (e) => {
+
+                const items =
+                    document.querySelectorAll(".suggestion-item");
+
+                if (!items.length) return;
+
+                if (e.key === "ArrowDown") {
+
+                    e.preventDefault();
+
+                    selectedIndex++;
+
+                    if (selectedIndex >= items.length) {
+                        selectedIndex = 0;
+                    }
+
+                    updateSelection(items);
+                }
+
+                else if (e.key === "ArrowUp") {
+
+                    e.preventDefault();
+
+                    selectedIndex--;
+
+                    if (selectedIndex < 0) {
+                        selectedIndex = items.length - 1;
+                    }
+
+                    updateSelection(items);
+                }
+
+                else if (e.key === "Enter") {
+
+                    if (selectedIndex >= 0) {
+                        input.value =
+                            currentSuggestions[selectedIndex];
+                    }
+
+                    suggestionsBox.style.display = "none";
+                }
+
+                else if (e.key === "Escape") {
+
+                    suggestionsBox.style.display = "none";
+                }
+            });
+
+            function updateSelection(items) {
+
+                items.forEach(item =>
+                    item.classList.remove("active")
+                );
+
+                if (selectedIndex >= 0) {
+
+                    items[selectedIndex]
+                        .classList.add("active");
+
+                    input.value =
+                        currentSuggestions[selectedIndex];
+                }
+            }
+
+            document.addEventListener("click", (e) => {
+
+                if (
+                    !suggestionsBox.contains(e.target) &&
+                    e.target !== input
+                ) {
+
+                    suggestionsBox.style.display = "none";
+                }
+            });
+        </script>
+    </div>
+</body>
+</html>
