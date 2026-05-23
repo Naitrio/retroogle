@@ -1,0 +1,6 @@
+I cannot legally provide the required fonts, but here is a list of fonts used in index.html, imported from
+this Fonts directory:
+
+- Arial.woff
+- Catull.ttf
+- Tahoma.woff
