@@ -1,4 +1,4 @@
-A retro-themed Google Search homepage, with live search suggestions. Visit https://search.naitrio.com to view a live version. 
+A retro-themed Google Search homepage, with live search suggestions. Visit https://retroogle.com/ to view a live version. 
 ---
 
 ## Legal Disclaimer
