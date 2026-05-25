@@ -10,7 +10,97 @@
     <link rel="shortcut icon" href="favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
-    <style>
+    <link rel="stylesheet" href="Styles/Style.css">
+</head>
+
+<style>
+        :root {
+
+            --bg-color: #ffffff;
+            --text-color: #000000;
+
+            --link-color: #0000cc;
+
+            --theme-menu-bg: #f0f0f0;
+            --theme-menu-border: #808080;
+            --theme-menu-shadow: #808080;
+            --theme-hover-bg: #ccccff;
+
+            --logo-blue: #1726b3;
+            --logo-red: #d32121;
+            --logo-yellow: #de9b00;
+            --logo-green: #008a00;
+
+            --toolbar-new-color: red;
+
+            --search-bg: #ffffff;
+            --search-text: #000000;
+
+            --search-border-dark: #808080;
+            --search-border-darker: #404040;
+            --search-border-light: #dcdcdc;
+
+            --search-shadow-dark: #404040;
+            --search-shadow-light: #ffffff;
+
+            --suggestions-bg: #ffffff;
+            --suggestions-border: #7f7f7f;
+            --suggestions-shadow: #808080;
+
+            --button-bg: #f0f0f0;
+            --button-hover-bg: #dcdcdc;
+            --button-text: #000000;
+
+            --button-border-light: #ffffff;
+            --button-border-dark: #808080;
+
+            --footer-text: #555555;
+        }
+
+        .dark-theme {
+
+            --bg-color: #22242a;
+            --text-color: #e0e0e0;
+
+            --link-color: #7aa2ff;
+
+            --theme-menu-bg: #2f3138;
+            --theme-menu-border: #555555;
+            --theme-menu-shadow: #000000;
+            --theme-hover-bg: #404560;
+
+            --logo-blue: #598dda;
+            --logo-red: #d46767;
+            --logo-yellow: #d4b15e;
+            --logo-green: #5ace6f;
+
+
+            --toolbar-new-color: #ff8080;
+
+            --search-bg: #2b2d33;
+            --search-text: #e0e0e0;
+
+            --search-border-dark: #555555;
+            --search-border-darker: #111111;
+            --search-border-light: #666666;
+
+            --search-shadow-dark: #111111;
+            --search-shadow-light: #444444;
+
+            --suggestions-bg: #2f3138;
+            --suggestions-border: #555555;
+            --suggestions-shadow: #000000;
+
+            --button-bg: #3a3d45;
+            --button-hover-bg: #4b4e57;
+            --button-text: #e0e0e0;
+
+            --button-border-light: #666666;
+            --button-border-dark: #111111;
+
+            --footer-text: #a0a0a0;
+        }
+
         @font-face {
             font-family: "Catull";
             src: url("Fonts/Catull.ttf");
@@ -26,19 +116,30 @@
             src: url("Fonts/Arial.woff");
         }
 
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        body {
+            min-height: 100vh;
+        }
+
         .header {
             font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            color: #000000;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             margin: 0 0 0 0;
             padding: 0 0 20px 0;
         }
 
         .mainPage {
             font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            color: #000000;
-            margin: 100px 0 0 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 140px 0 0 0;
             padding: 0 0 0 0;
         }
 
@@ -46,14 +147,41 @@
         .top-nav {
             font-size: 13px;
             text-align: right;
+            margin-right: 15px;
             margin-bottom: 20px;
         }
 
             .top-nav a {
-                color: #0000cc;
+                color: var(--link-color);
                 text-decoration: underline;
                 margin-left: 10px;
             }
+
+        /* Theme Menu */
+        .theme-menu {
+            font-family: Tahoma, sans-serif;
+            display: none;
+            position: absolute;
+            right: 69px;
+            top: 20px;
+            width: 140px;
+            background: var(--theme-menu-bg);
+            border: 1px solid var(--theme-menu-border);
+            box-shadow: 2px 2px 0px var(--theme-menu-shadow);
+            text-align: left;
+            z-index: 1000;
+        }
+
+        .theme-item {
+            padding: 4px 8px;
+            font-size: 13px;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .theme-item:hover {
+            background: var(--theme-hover-bg);
+        }
 
         /* Google Logo Styling */
         .logo-container {
@@ -69,19 +197,19 @@
         }
 
         .g-blue {
-            color: #1726b3;
+            color: var(--logo-blue);
         }
 
         .g-red {
-            color: #d32121;
+            color: var(--logo-red);
         }
 
         .g-yellow {
-            color: #de9b00;
+            color: var(--logo-yellow);
         }
 
         .g-green {
-            color: #008a00;
+            color: var(--logo-green);
         }
 
         /* Outer container table */
@@ -101,12 +229,12 @@
         }
 
             .toolbar a {
-                color: #0000cc;
+                color: var(--link-color);
                 text-decoration: underline;
             }
 
             .toolbar sup {
-                color: red;
+                color: var(--toolbar-new-color);
             }
 
         .search-cell {
@@ -121,30 +249,33 @@
             font-size: 15px;
             padding: 4px;
             margin: 4px 0px 4px 0;
-            border: 1px solid #404040;
-            border-top: 1px solid #808080;
-            border-left: 1px solid #808080;
-            border-right: 1px solid #dcdcdc;
-            border-bottom: 1px solid #dcdcdc;
-            background: white;
-            box-shadow: inset 1px 1px 0 #404040, inset -1px -1px 0 #ffffff;
+            color: var(--search-text);
+            border: 1px solid var(--search-border-darker);
+            border-top: 1px solid var(--search-border-dark);
+            border-left: 1px solid var(--search-border-dark);
+            border-right: 1px solid var(--search-border-light);
+            border-bottom: 1px solid var(--search-border-light);
+            background: var(--search-bg);
+            box-shadow:
+                inset 1px 1px 0 var(--search-shadow-dark),
+                inset -1px -1px 0 var(--search-shadow-light);
         }
 
             .search-input:focus {
                 outline: none;
-                border: -1px solid #0000cc;
             }
 
         /* Suggestion dropdown */
         .suggestions {
             display: none;
             position: absolute;
-            box-shadow: 2px 2px 0px #808080;
+            box-shadow: 2px 2px 0px var(--suggestions-shadow);
             width: 500px;
             margin: 0 auto;
-            border: 1px solid #7f7f7f;
+            border: 1px solid var(--suggestions-border);
             border-top: none;
-            background: #ffffff;
+            background: var(--suggestions-bg);
+            color: var(--text-color);
             text-align: left;
             box-sizing: border-box;
             font-family: Tahoma, sans-serif;
@@ -158,30 +289,38 @@
 
             .suggestion-item.active,
             .suggestion-item:hover {
-                background-color: #ccccff;
+                background-color: var(--theme-hover-bg);
             }
 
         /* Beveled buttons */
         .btn {
             -webkit-appearance: none;
             appearance: none;
-            color: #000000;
+            color: var(--button-text);
             font-size: 13.5px;
             font-family: Tahoma, sans-serif;
             padding: 3px 7px;
             margin: 4px;
-            background-color: #f0f0f0;
+            background-color: var(--button-bg);
             border: 2px solid;
-            border-color: #ffffff #808080 #808080 #ffffff;
+            border-color:
+                var(--button-border-light)
+                var(--button-border-dark)
+                var(--button-border-dark)
+                var(--button-border-light);
             cursor: pointer;
         }
 
             .btn:hover {
-                background-color: #dcdcdc;
+                background-color: var(--button-hover-bg);
             }
 
             .btn:active {
-                border-color: #808080 #ffffff #ffffff #808080;
+                border-color:
+                    var(--button-border-dark)
+                    var(--button-border-light)
+                    var(--button-border-light)
+                    var(--button-border-dark);
             }
 
         /* Footer layout */
@@ -194,9 +333,13 @@
         }
 
             .footer-table a {
-                color: #0000cc;
+                color: var(--link-color);
                 text-decoration: underline;
             }
+
+        .footer-text {
+            color: var(--footer-text);
+        }
 
         @media (max-width: 600px) {
 
@@ -238,18 +381,30 @@
             }
         }
 
-    </style>
-</head>
+</style>
+
 <body>
 
     <div class="header">
         <!-- Top Navigation -->
         <div class="top-nav">
+            <a href="#" id="themeButton">Themes</a>
             <a href="https://support.google.com/">Help</a>
             <a href="https://github.com/Naitrio/retroogle">About Retroogle</a>
-            <a href="https://www.naitrio.com">Home</a>
         </div>
     </div>
+
+    <div id="themeMenu" class="theme-menu">
+
+    <div class="theme-item" data-theme="light">
+        Light
+    </div>
+
+    <div class="theme-item" data-theme="dark">
+        Dark
+    </div>
+
+</div>
 
     <div class="mainPage">
 
@@ -328,162 +483,7 @@
                 </td>
             </tr>
         </table>
-
-        <script>
-            const input = document.getElementById("q");
-            const suggestionsBox = document.getElementById("suggestions");
-
-            let selectedIndex = -1;
-            let currentSuggestions = [];
-
-            function fetchSuggestions(query) {
-
-                if (!query.trim()) {
-                    suggestionsBox.style.display = "none";
-                    return;
-                }
-
-                // Remove old script tag
-                const oldScript = document.getElementById("jsonpScript");
-
-                if (oldScript) {
-                    oldScript.remove();
-                }
-
-                // Create JSONP request
-                const script = document.createElement("script");
-
-                script.id = "jsonpScript";
-
-                script.src =
-                    "https://suggestqueries.google.com/complete/search" +
-                    "?client=firefox" +
-                    "&q=" + encodeURIComponent(query) +
-                    "&callback=handleSuggestions";
-
-                document.body.appendChild(script);
-            }
-
-            function handleSuggestions(data) {
-
-                currentSuggestions = data[1];
-
-                renderSuggestions(currentSuggestions);
-            }
-
-            function renderSuggestions(suggestions) {
-
-                suggestionsBox.innerHTML = "";
-
-                if (!suggestions.length) {
-                    suggestionsBox.style.display = "none";
-                    return;
-                }
-
-                suggestions.forEach((text, index) => {
-
-                    const item = document.createElement("div");
-
-                    item.className = "suggestion-item";
-
-                    item.textContent = text;
-
-                    item.addEventListener("mousedown", () => {
-
-                        input.value = text;
-
-                        suggestionsBox.style.display = "none";
-                    });
-
-                    suggestionsBox.appendChild(item);
-                });
-
-                selectedIndex = -1;
-
-                suggestionsBox.style.display = "block";
-            }
-
-            input.addEventListener("input", () => {
-
-                fetchSuggestions(input.value);
-            });
-
-            input.addEventListener("keydown", (e) => {
-
-                const items =
-                    document.querySelectorAll(".suggestion-item");
-
-                if (!items.length) return;
-
-                if (e.key === "ArrowDown") {
-
-                    e.preventDefault();
-
-                    selectedIndex++;
-
-                    if (selectedIndex >= items.length) {
-                        selectedIndex = 0;
-                    }
-
-                    updateSelection(items);
-                }
-
-                else if (e.key === "ArrowUp") {
-
-                    e.preventDefault();
-
-                    selectedIndex--;
-
-                    if (selectedIndex < 0) {
-                        selectedIndex = items.length - 1;
-                    }
-
-                    updateSelection(items);
-                }
-
-                else if (e.key === "Enter") {
-
-                    if (selectedIndex >= 0) {
-                        input.value =
-                            currentSuggestions[selectedIndex];
-                    }
-
-                    suggestionsBox.style.display = "none";
-                }
-
-                else if (e.key === "Escape") {
-
-                    suggestionsBox.style.display = "none";
-                }
-            });
-
-            function updateSelection(items) {
-
-                items.forEach(item =>
-                    item.classList.remove("active")
-                );
-
-                if (selectedIndex >= 0) {
-
-                    items[selectedIndex]
-                        .classList.add("active");
-
-                    input.value =
-                        currentSuggestions[selectedIndex];
-                }
-            }
-
-            document.addEventListener("click", (e) => {
-
-                if (
-                    !suggestionsBox.contains(e.target) &&
-                    e.target !== input
-                ) {
-
-                    suggestionsBox.style.display = "none";
-                }
-            });
-        </script>
     </div>
+    <script src="Scripts/Script.js"></script>
 </body>
 </html>
