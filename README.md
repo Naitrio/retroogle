@@ -1,4 +1,4 @@
-A retro-themed Google Search homepage, with live search suggestions. Visit https://retroogle.com/ (or https://search.naitrio.com) to view a live version. 
+A retro-themed Google Search homepage, with live search suggestions and a dark theme. Visit https://retroogle.com/ (or https://search.naitrio.com) to view a live version. 
 ---
 
 ## Legal Disclaimer
