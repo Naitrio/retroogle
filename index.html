@@ -136,11 +136,26 @@
         }
 
         .mainPage {
+
+            /*
             font-family: Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 140px 0 0 0;
             padding: 0 0 0 0;
+            */
+
+            min-height: 65vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            padding-top: 16vh;
+            box-sizing: border-box;
+
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
         }
 
         /* Top Navigation Links */
@@ -187,7 +202,7 @@
         /* Google Logo Styling */
         .logo-container {
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
         }
 
         .logo {
@@ -345,7 +360,7 @@
         @media (max-width: 600px) {
 
             .mainPage {
-                margin-top: 80px;
+                margin-top: 0px;
             }
 
             .logo {
